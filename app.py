@@ -19,44 +19,42 @@ import os
 API_KEY = os.getenv("API_KEY")  # set this in Render
 
 # ------------------ WEATHER FUNCTION ------------------
-
 def get_real_weather_smart(location_input):
-    locations_to_try = [
-    location_input,
-    "Tagarapuvalasa",
-    "Thagarapuvalasa",
-    "Bheemunipatnam",
-    "Visakhapatnam"
-    ]
-    
-    ```
-    locations_to_try = list(dict.fromkeys(locations_to_try))
-    
-    for city in locations_to_try:
-        url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric"
-        try:
-            response = requests.get(url, timeout=5)
-            data = response.json()
-    
-            if data['cod'] == 401:
-                return "KEY_ERROR"
-    
-            if data['cod'] == 200:
-                return {
-                    'temp': data['main']['temp'],
-                    'pressure': data['main']['pressure'],
-                    'humidity': data['main']['humidity'],
-                    'wind': data['wind']['speed'],
-                    'desc': data['weather'][0]['description'],
-                    'name': data['name'],
-                    'search_term': city
-                }
-    
-        except:
-            continue
-    
-    return None
-```
+locations_to_try = [
+location_input,
+"Tagarapuvalasa",
+"Thagarapuvalasa",
+"Bheemunipatnam",
+"Visakhapatnam"
+]
+
+locations_to_try = list(dict.fromkeys(locations_to_try))
+
+for city in locations_to_try:
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric"
+
+    try:
+        response = requests.get(url, timeout=5)
+        data = response.json()
+
+        if data.get('cod') == 401:
+            return "KEY_ERROR"
+
+        if data.get('cod') == 200:
+            return {
+                'temp': data['main']['temp'],
+                'pressure': data['main']['pressure'],
+                'humidity': data['main']['humidity'],
+                'wind': data['wind']['speed'],
+                'desc': data['weather'][0]['description'],
+                'name': data['name'],
+                'search_term': city
+            }
+
+    except Exception:
+        continue
+
+return None
 
 
 # ------------------ MODEL (CACHED) ------------------
@@ -70,7 +68,6 @@ training_data = {
 'Wind_Speed': [3.5, 4.2, 6.5, 2.5, 1.5, 8.0, 5.2, 3.0, 2.8, 1.0, 7.5, 4.8, 3.9, 3.4, 2.6]
 }
 
-```
 df = pd.DataFrame(training_data)
 X = df[['Temperature', 'Pressure', 'Humidity']]
 y = df['Wind_Speed']
@@ -79,7 +76,7 @@ model = RandomForestRegressor(n_estimators=100, random_state=42)
 model.fit(X, y)
 
 return model
-```
+
 
 model = load_model()
 
@@ -117,7 +114,6 @@ user_loc = st.text_input("📍 Enter Location", "Tagarapuvalasa")
 
 if st.button("🚀 Get Live Data"):
 
-```
 st.info("Fetching real-time data...")
 
 weather = get_real_weather_smart(user_loc)
@@ -169,4 +165,4 @@ else:
         <p class="metric {status_color}">Status: {status_text}</p>
     </div>
     """, unsafe_allow_html=True)
-```
+
