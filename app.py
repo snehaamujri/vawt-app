@@ -51,11 +51,13 @@ for city in locations_to_try:
                 'name': data['name'],
                 'search_term': city
             }
+
     except:
         continue
 
 return None
 ```
+
 
 # ------------------ MODEL (CACHED) ------------------
 
