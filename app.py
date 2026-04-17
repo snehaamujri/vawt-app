@@ -21,10 +21,17 @@ API_KEY = os.getenv("API_KEY")  # set this in Render
 # ------------------ WEATHER FUNCTION ------------------
 
 def get_real_weather_smart(location_input):
-locations_to_try = [location_input, "Tagarapuvalasa", "Thagarapuvalasa", "Bheemunipatnam", "Visakhapatnam"]
-locations_to_try = list(dict.fromkeys(locations_to_try))
+locations_to_try = [
+location_input,
+"Tagarapuvalasa",
+"Thagarapuvalasa",
+"Bheemunipatnam",
+"Visakhapatnam"
+]
 
 ```
+locations_to_try = list(dict.fromkeys(locations_to_try))
+
 for city in locations_to_try:
     url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric"
     try:
@@ -46,6 +53,7 @@ for city in locations_to_try:
             }
     except:
         continue
+
 return None
 ```
 
