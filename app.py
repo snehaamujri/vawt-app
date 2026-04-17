@@ -29,7 +29,9 @@ print("✅ AI Model Trained Successfully.")
 
 
 # 🔑 API KEY (Your Provided Key)
-API_KEY = 'b6d5a415df5c061c0965ca17c83dd0bd'
+
+import os
+API_KEY = os.getenv("b6d5a415df5c061c0965ca17c83dd0bd")
 
 def get_real_weather_smart(location_input):
     """
