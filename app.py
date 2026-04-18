@@ -20,41 +20,40 @@ API_KEY = os.getenv("API_KEY")  # set this in Render
 
 # ------------------ WEATHER FUNCTION ------------------
 def get_real_weather_smart(location_input):
-locations_to_try = [
-location_input,
-"Tagarapuvalasa",
-"Thagarapuvalasa",
-"Bheemunipatnam",
-"Visakhapatnam"
-]
+    locations_to_try = [
+        location_input,
+        "Tagarapuvlasa",
+        "Thagarapuvlasa",
+        "Bheemunipatnam",
+        "Visakhapatnam"
+    ]
 
-locations_to_try = list(dict.fromkeys(locations_to_try))
+    locations_to_try = list(dict.fromkeys(locations_to_try))
 
-for city in locations_to_try:
-    url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric"
+    for city in locations_to_try:
+        url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric"
+        try:
+            response = requests.get(url, timeout=5)
+            data = response.json()
 
-    try:
-        response = requests.get(url, timeout=5)
-        data = response.json()
+            if data.get('cod') == 401:
+                return "KEY_ERROR"
 
-        if data.get('cod') == 401:
-            return "KEY_ERROR"
+            if data.get('cod') == 200:
+                return {
+                    'temp': data['main']['temp'],
+                    'pressure': data['main']['pressure'],
+                    'humidity': data['main']['humidity'],
+                    'wind': data['wind']['speed'],
+                    'desc': data['weather'][0]['description'],
+                    'name': data['name'],
+                    'search_term': city
+                }
 
-        if data.get('cod') == 200:
-            return {
-                'temp': data['main']['temp'],
-                'pressure': data['main']['pressure'],
-                'humidity': data['main']['humidity'],
-                'wind': data['wind']['speed'],
-                'desc': data['weather'][0]['description'],
-                'name': data['name'],
-                'search_term': city
-            }
+        except:
+            continue
 
-    except Exception:
-        continue
-
-return None
+    return None
 
 
 # ------------------ MODEL (CACHED) ------------------
