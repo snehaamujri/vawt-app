@@ -113,7 +113,7 @@ user_loc = st.text_input("📍 Enter Location", "Tagarapuvalasa")
 
 if st.button("🚀 Get Live Data"):
 
-st.info("Fetching real-time data...")
+    st.info("Fetching real-time data...")
 
 weather = get_real_weather_smart(user_loc)
 
