@@ -84,28 +84,104 @@ model = load_model()
 # CSS
 
 st.markdown("""
-
 <style>
-body { background-color: #0e1117; }
-.main { background-color: #0e1117; }
-h1 { text-align: center; color: white; }
-.card {
-    background-color: #161b22;
-    padding: 20px;
-    border-radius: 15px;
-    margin-bottom: 15px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.4);
-}
-.metric { font-size: 20px; font-weight: bold; }
-.green { color: #00ff9f; }
-.red { color: #ff4b4b; }
-</style>
 
+/* Background */
+body {
+    background: linear-gradient(135deg, #0f172a, #020617);
+}
+
+/* Main container */
+.main {
+    background-color: transparent;
+}
+
+/* Title */
+h1 {
+    text-align: center;
+    font-size: 42px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 10px;
+}
+
+/* Subtitle */
+.subtitle {
+    text-align: center;
+    color: #94a3b8;
+    margin-bottom: 30px;
+}
+
+/* Input box */
+.stTextInput>div>div>input {
+    background-color: #1e293b;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/* Button */
+.stButton>button {
+    background: linear-gradient(90deg, #3b82f6, #06b6d4);
+    color: white;
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-weight: 600;
+    border: none;
+}
+
+.stButton>button:hover {
+    transform: scale(1.05);
+}
+
+/* Card */
+.card {
+    background: #111827;
+    padding: 20px;
+    border-radius: 16px;
+    margin-top: 15px;
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.4);
+}
+
+/* Section titles */
+.card h3 {
+    color: #38bdf8;
+}
+
+/* Metrics */
+.metric {
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+/* Status colors */
+.green {
+    color: #22c55e;
+    font-weight: bold;
+}
+
+.red {
+    color: #ef4444;
+    font-weight: bold;
+}
+
+/* Loader box */
+.info-box {
+    background: #1e3a5f;
+    padding: 12px;
+    border-radius: 10px;
+    margin-top: 10px;
+    color: #93c5fd;
+    text-align: center;
+}
+
+</style>
 """, unsafe_allow_html=True)
 
 # Title
 
-st.markdown("<h1>🌪️ VAWT AI Weather & Power Bot</h1>", unsafe_allow_html=True)
+st.markdown("<h1>VAWT AI Weather & Power Bot</h1>", unsafe_allow_html=True)
+st.markdown("<div class='subtitle'>Real-time Weather + AI Power Prediction</div>", unsafe_allow_html=True)
 
 # Input
 
