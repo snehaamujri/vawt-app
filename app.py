@@ -60,21 +60,21 @@ def get_real_weather_smart(location_input):
 
 @st.cache_resource
 def load_model():
-training_data = {
-'Temperature': [20, 25, 30, 15, 10, 35, 28, 22, 18, 12, 33, 29, 24, 21, 19],
-'Pressure': [1012, 1010, 1005, 1015, 1020, 1000, 1008, 1013, 1014, 1022, 1002, 1009, 1011, 1012, 1016],
-'Humidity': [60, 55, 45, 70, 80, 40, 50, 65, 68, 85, 42, 53, 58, 62, 75],
-'Wind_Speed': [3.5, 4.2, 6.5, 2.5, 1.5, 8.0, 5.2, 3.0, 2.8, 1.0, 7.5, 4.8, 3.9, 3.4, 2.6]
-}
-
-df = pd.DataFrame(training_data)
-X = df[['Temperature', 'Pressure', 'Humidity']]
-y = df['Wind_Speed']
-
-model = RandomForestRegressor(n_estimators=100, random_state=42)
-model.fit(X, y)
-
-return model
+    training_data = {
+    'Temperature': [20, 25, 30, 15, 10, 35, 28, 22, 18, 12, 33, 29, 24, 21, 19],
+    'Pressure': [1012, 1010, 1005, 1015, 1020, 1000, 1008, 1013, 1014, 1022, 1002, 1009, 1011, 1012, 1016],
+    'Humidity': [60, 55, 45, 70, 80, 40, 50, 65, 68, 85, 42, 53, 58, 62, 75],
+    'Wind_Speed': [3.5, 4.2, 6.5, 2.5, 1.5, 8.0, 5.2, 3.0, 2.8, 1.0, 7.5, 4.8, 3.9, 3.4, 2.6]
+    }
+    
+    df = pd.DataFrame(training_data)
+    X = df[['Temperature', 'Pressure', 'Humidity']]
+    y = df['Wind_Speed']
+    
+    model = RandomForestRegressor(n_estimators=100, random_state=42)
+    model.fit(X, y)
+    
+    return model
 
 
 model = load_model()
