@@ -189,19 +189,28 @@ user_loc = st.text_input("📍 Enter Location", "Tagarapuvalasa")
 
 if st.button("🚀 Get Live Data"):
 
-    st.info("Fetching real-time data...")
+    with st.spinner("Fetching real-time data..."):
+        weather = get_real_weather_smart(user_loc)
 
-weather = get_real_weather_smart(user_loc)
+    if weather == "KEY_ERROR":
+        st.error("❌ API Key issue")
 
-if weather == "KEY_ERROR":
-    st.error("❌ API Key issue")
-elif weather is None:
-    st.error("❌ Location not found")
-else:
-    input_df = pd.DataFrame([[weather['temp'], weather['pressure'], weather['humidity']]],
-                            columns=['Temperature', 'Pressure', 'Humidity'])
+    elif weather is None:
+        st.error("❌ Location not found")
 
-    predicted_wind = model.predict(input_df)[0]
+    else:
+        st.success("✅ Data fetched successfully")
+
+        input_df = pd.DataFrame(
+            [[weather['temp'], weather['pressure'], weather['humidity']]],
+            columns=['Temperature', 'Pressure', 'Humidity']
+        )
+
+        predicted_wind = model.predict(input_df)[0]
+
+        st.write(predicted_wind) 
+        
+   
 
     rho = 1.25
     area = 0.03125
