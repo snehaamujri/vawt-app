@@ -208,7 +208,6 @@ if st.button("🚀 Get Live Data"):
 
         predicted_wind = model.predict(input_df)[0]
 
-        st.write(predicted_wind) 
         
    
 
