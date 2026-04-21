@@ -217,6 +217,21 @@ if st.button("🚀 Get Live Data"):
 
     power_watts = 0.5 * cp * rho * area * (predicted_wind ** 3)
     power_mw = power_watts * 1000
+    
+
+    # -------- MONTHLY GRAPH --------
+    import numpy as np
+    
+    days = np.arange(1, 31)
+    daily_power = power_watts + np.random.normal(0, power_watts * 0.1, size=30)
+    
+    df_power = pd.DataFrame({
+        "Day": days,
+        "Power (W)": daily_power
+    })
+    
+    st.subheader("📊 Monthly Power Output")
+    st.bar_chart(df_power.set_index("Day"))
 
     # Live Data
     st.markdown(f"""
@@ -246,6 +261,15 @@ if st.button("🚀 Get Live Data"):
         <h3>⚡ Power Output</h3>
         <p class="metric">Power: {power_mw:.2f} mW</p>
         <p class="metric {status_color}">Status: {status_text}</p>
+    </div>
+    """, unsafe_allow_html=True)
+    st.markdown("""
+    <div style='position: fixed; bottom: 10px; right: 10px; 
+    background-color: rgba(255,255,255,0.05); 
+    padding: 8px 12px; border-radius: 10px; font-size: 12px; color: gray;'>
+    
+    NOTE: The entire UI is a demo. It does not show actual load values but displays predicted power outputs.
+    
     </div>
     """, unsafe_allow_html=True)
 
