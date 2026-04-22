@@ -181,8 +181,6 @@ h1 {
 
 # Title
 
-st.markdown("<h1>VAWT AI Weather & Power Bot</h1>", unsafe_allow_html=True)
-st.markdown("<div class='subtitle'>Real-time Weather + AI Power Prediction</div>", unsafe_allow_html=True)
 
 # Input
 
