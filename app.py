@@ -4,7 +4,8 @@ import streamlit as st
 
 # ------------------ STREAMLIT INIT (MUST BE FIRST) ------------------
 
-st.set_page_config(page_title="VAWT AI Bot", page_icon="🌪️", layout="centered")
+st.markdown("<h1>SWIFT</h1>", unsafe_allow_html=True)
+st.markdown("<div class='subtitle'>Smart Wind Turbine with IoT and ML-based Feedback Tracking</div>", unsafe_allow_html=True)
 
 # ------------------ IMPORTS ------------------
 
