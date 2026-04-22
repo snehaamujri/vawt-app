@@ -231,7 +231,7 @@ if st.button("🚀 Get Live Data"):
         })
     
         st.subheader("📊 Monthly Power Output")
-        st.bar_chart(df_power.set_index("Day"))_power.set_index("Day")
+        st.bar_chart(df_power.set_index("Day"))
 
     # Live Data
     st.markdown(f"""
