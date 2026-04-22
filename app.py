@@ -219,19 +219,20 @@ if st.button("🚀 Get Live Data"):
     power_mw = power_watts * 1000
     
 
+    
     # -------- MONTHLY GRAPH --------
-    if st.button("📊 Show Monthly Analysis"):
-
-        days = np.arange(1, 31)
-        daily_power = power_watts + np.random.normal(0, power_watts * 0.1, size=30)
+    import numpy as np
     
-        df_power = pd.DataFrame({
-            "Day": days,
-            "Power (W)": daily_power
-        })
+    days = np.arange(1, 31)
+    daily_power = power_watts + np.random.normal(0, power_watts * 0.1, size=30)
     
-        st.subheader("📊 Monthly Power Output")
-        st.bar_chart(df_power.set_index("Day"))
+    df_power = pd.DataFrame({
+        "Day": days,
+        "Power (W)": daily_power
+    })
+    
+    st.subheader("📊 Monthly Power Output")
+    st.bar_chart(df_power.set_index("Day"))
 
     # Live Data
     st.markdown(f"""
